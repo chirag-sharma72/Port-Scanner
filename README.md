@@ -6,6 +6,12 @@ Built as part of pursuing Python Scripting course from The Cyber Mentor.
 
 1. Download the repository
 
-``` git clone https://github.com/chirag-sharma72/Port-Scanner.git ```
+``` 
+    git clone https://github.com/chirag-sharma72/Port-Scanner.git
+```
 
-2. 
+2. Run the scanner.py file
+
+```
+    python3 scanner.py <target>
+```
