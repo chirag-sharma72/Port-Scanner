@@ -18,19 +18,17 @@ def scan_port(target, port):
         print(f"Socket error on port {port}: {e}") # For errors such as host name doesn't resolve, timeout (settimeout()), connection gets refused etc.
     
     except Exception as e:
-        print(f"Unexpected error on port {port}: {e}") # When not sure what the error is
+        print(f"Unexpected error on port {port}: {e}")
 
 # Main function - Argument Validation and Target Definition
-# python.exe port_scanner.py 192.168.2.3
-
 def main():
-    if len(sys.argv) == 2: # number of arguments = 2
-        target = sys.argv[1]    # target definition
+    if len(sys.argv) == 2:
+        target = sys.argv[1]  # target definition
 
     else:
         print("Invalid number of arguments")
         print("Usage: python.exe port_scanner.py <target>")
-        sys.exit(1) # exiting with a 1 -> exiting with an error; exiting with a 0 -> clean exit
+        sys.exit(1)
 
     # Resolve the target hostname to an IP address
     try:
@@ -39,7 +37,7 @@ def main():
     except socket.gaierror: # hostname resolution issue
         print(f"Error: Unable to resolve hostname {target}")
 
-    sys.exit(1) # exit with error
+    sys.exit(1)
 
     # Adding a pretty banner
     print("-" * 50)
@@ -53,9 +51,9 @@ def main():
         for port in range(1,65536):
             thread = threading.Thread(target=scan_port,args=(target_ip,port)) # creating a thread for each port
             threads.append(thread)
-            thread.start() # not using this will only define the thread, but not execute the thread
+            thread.start()
 
-        # Best Practise - Wait for all threads to complete
+        # Waiting for all threads to complete
         for thread in threads:
             thread.join()
 
@@ -69,7 +67,6 @@ def main():
 
     print("\nScan complete!")
 
-# Best Practise - Prevent this script from being imported (being a main script)
+# Preventing the script from being imported (being a main script)
 if __name__ == "__main__":
-    main()          
-# Technical details - Running the program directly sets name to main, but importing it (import scanner.py) sets it to scanner
+    main()
