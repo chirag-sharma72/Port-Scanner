@@ -59,17 +59,17 @@ def main():
         for thread in threads:
             thread.join()
 
-        except KeyboardInterrupt:
-            print("\nExiting program")
-            sys.exit(0)
+    except KeyboardInterrupt:
+    	print("\nExiting program")
+    	sys.exit(0)
 
-        except socket.error as e:
-            print(f"Socket error: {e}")
-            sys.exit(1)
+    except socket.error as e:
+    	print(f"Socket error: {e}")
+    	sys.exit(1)
 
-        print("\nScan complete!")
+    print("\nScan complete!")
 
 # Best Practise - Prevent this script from being imported (being a main script)
-if __name__ = "__main__":
+if __name__ == "__main__":
     main()          
 # Technical details - Running the program directly sets name to main, but importing it (import scanner.py) sets it to scanner
